@@ -11,6 +11,6 @@ export default class User extends compose(
     passwordColumnName: 'password',
   })
 ) {
-  static accessTokens = DbAccessTokensProvider.forModel(User)
+  static accessTokens = DbAccessTokensProvider.forModel(User, { expiresIn: '1d' })
   declare currentAccessToken?: AccessToken
 }
