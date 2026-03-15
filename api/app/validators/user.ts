@@ -1,26 +1,26 @@
 import vine from '@vinejs/vine'
 
-/**
- * Shared rules for email and password.
- */
-const email = () => vine.string().email().maxLength(254)
-const password = () => vine.string().minLength(8).maxLength(32)
-
-/**
- * Validator to use when performing self-signup
- */
-export const signupValidator = vine.create({
-  fullName: vine.string().nullable(),
-  email: email().unique({ table: 'users', column: 'email' }),
-  password: password(),
-  passwordConfirmation: password().sameAs('password'),
+export const InsertUserValidator = vine.create({
+  fname: vine.string().minLength(3).trim(),
+  mname: vine.string().minLength(3).trim().optional(),
+  lname: vine.string().minLength(3).trim(),
+  username: vine.string().minLength(3).trim(),
+  password: vine.string().minLength(6).trim(),
+  position: vine.string().minLength(3).trim(),
+  section_id: vine.number(),
+  status: vine.enum(['A', 'I']).optional(),
 })
 
-/**
- * Validator to use before validating user credentials
- * during login
- */
-export const loginValidator = vine.create({
-  email: email(),
-  password: vine.string(),
+export const UpdateUserValidator = vine.create({
+  fname: vine.string().minLength(3).trim().optional(),
+  mname: vine.string().minLength(3).trim().optional(),
+  lname: vine.string().minLength(3).trim().optional(),
+  username: vine.string().minLength(3).trim().optional(),
+  password: vine.string().minLength(6).trim().optional(),
+  position: vine.string().minLength(3).trim().optional(),
+  section_id: vine.number().optional(),
+  status: vine.enum(['A', 'I']).optional(),
+  params: vine.object({
+    id: vine.number(),
+  }),
 })
