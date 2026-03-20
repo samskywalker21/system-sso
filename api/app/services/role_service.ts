@@ -1,5 +1,10 @@
 import Role from '#models/role'
 
+interface RoleData {
+  userId: number
+  systemId: number
+  accessLevel: '1' | '2' | '3' | '4'
+}
 export class RoleService {
   // Your code here
   async getAllRoles() {
@@ -74,7 +79,30 @@ export class RoleService {
       })
   }
 
-  async insertUserRoles() {}
+  async insertUserRoles(roles: RoleData[]) {
+    const roleMap = roles.map(async (role) => {
+      const doesExist = await Role.findBy({ systemId: role.systemId, userId: role.userId })
+      if (!doesExist) {
+        const newRole = await Role.create({
+          userId: role.userId,
+          systemId: role.systemId,
+          accessLevel: String(role.accessLevel),
+        })
+        return newRole
+      }
+    })
 
-  async updateUserRole() {}
+    return roleMap
+  }
+
+  async updateUserRole(id: number, data: Partial<RoleData>) {
+    const role = await Role.findOrFail(id)
+    const newRole = role.merge(data)
+    return newRole.save()
+  }
+
+  async deleteUserRole(id: number) {
+    const role = await Role.findOrFail(id)
+    return await role.delete()
+  }
 }

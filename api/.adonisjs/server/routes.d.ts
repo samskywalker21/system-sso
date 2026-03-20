@@ -8,6 +8,8 @@ export type ScannedRoutes = {
     'auth.verify': { paramsTuple?: []; params?: {} }
     'auth.logout': { paramsTuple?: []; params?: {} }
     'auth.logout_all': { paramsTuple?: []; params?: {} }
+    'auth.register': { paramsTuple?: []; params?: {} }
+    'auth.sections': { paramsTuple?: []; params?: {} }
     'divisions.get_all_divisions': { paramsTuple?: []; params?: {} }
     'divisions.get_active_divisions': { paramsTuple?: []; params?: {} }
     'divisions.get_paginated_divisions': { paramsTuple?: []; params?: {} }
@@ -35,18 +37,24 @@ export type ScannedRoutes = {
     'roles.get_roles_by_system': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'roles.get_roles_by_auth_user': { paramsTuple?: []; params?: {} }
     'roles.get_paginated_roles': { paramsTuple?: []; params?: {} }
+    'roles.insert_user_roles': { paramsTuple?: []; params?: {} }
+    'roles.update_user_role': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'roles.delete_user_role': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   POST: {
     'auth.login': { paramsTuple?: []; params?: {} }
     'auth.logout': { paramsTuple?: []; params?: {} }
     'auth.logout_all': { paramsTuple?: []; params?: {} }
+    'auth.register': { paramsTuple?: []; params?: {} }
     'divisions.insert_division': { paramsTuple?: []; params?: {} }
     'sections.insert_section': { paramsTuple?: []; params?: {} }
     'users.insert_user': { paramsTuple?: []; params?: {} }
     'systems.insert_system': { paramsTuple?: []; params?: {} }
+    'roles.insert_user_roles': { paramsTuple?: []; params?: {} }
   }
   GET: {
     'auth.verify': { paramsTuple?: []; params?: {} }
+    'auth.sections': { paramsTuple?: []; params?: {} }
     'divisions.get_all_divisions': { paramsTuple?: []; params?: {} }
     'divisions.get_active_divisions': { paramsTuple?: []; params?: {} }
     'divisions.get_paginated_divisions': { paramsTuple?: []; params?: {} }
@@ -69,6 +77,7 @@ export type ScannedRoutes = {
   }
   HEAD: {
     'auth.verify': { paramsTuple?: []; params?: {} }
+    'auth.sections': { paramsTuple?: []; params?: {} }
     'divisions.get_all_divisions': { paramsTuple?: []; params?: {} }
     'divisions.get_active_divisions': { paramsTuple?: []; params?: {} }
     'divisions.get_paginated_divisions': { paramsTuple?: []; params?: {} }
@@ -94,6 +103,10 @@ export type ScannedRoutes = {
     'sections.update_section': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'users.update_user': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'systems.update_system': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'roles.update_user_role': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+  }
+  DELETE: {
+    'roles.delete_user_role': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
 }
 declare module '@adonisjs/core/types/http' {

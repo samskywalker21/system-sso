@@ -30,6 +30,18 @@ const routes = {
     tokens: [{"old":"/api/v1/auth/logout_all","type":0,"val":"api","end":""},{"old":"/api/v1/auth/logout_all","type":0,"val":"v1","end":""},{"old":"/api/v1/auth/logout_all","type":0,"val":"auth","end":""},{"old":"/api/v1/auth/logout_all","type":0,"val":"logout_all","end":""}],
     types: placeholder as Registry['auth.logout_all']['types'],
   },
+  'auth.register': {
+    methods: ["POST"],
+    pattern: '/api/v1/auth/register',
+    tokens: [{"old":"/api/v1/auth/register","type":0,"val":"api","end":""},{"old":"/api/v1/auth/register","type":0,"val":"v1","end":""},{"old":"/api/v1/auth/register","type":0,"val":"auth","end":""},{"old":"/api/v1/auth/register","type":0,"val":"register","end":""}],
+    types: placeholder as Registry['auth.register']['types'],
+  },
+  'auth.sections': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/auth/sections',
+    tokens: [{"old":"/api/v1/auth/sections","type":0,"val":"api","end":""},{"old":"/api/v1/auth/sections","type":0,"val":"v1","end":""},{"old":"/api/v1/auth/sections","type":0,"val":"auth","end":""},{"old":"/api/v1/auth/sections","type":0,"val":"sections","end":""}],
+    types: placeholder as Registry['auth.sections']['types'],
+  },
   'divisions.get_all_divisions': {
     methods: ["GET","HEAD"],
     pattern: '/api/v1/division/all',
@@ -191,6 +203,24 @@ const routes = {
     pattern: '/api/v1/roles/paginated',
     tokens: [{"old":"/api/v1/roles/paginated","type":0,"val":"api","end":""},{"old":"/api/v1/roles/paginated","type":0,"val":"v1","end":""},{"old":"/api/v1/roles/paginated","type":0,"val":"roles","end":""},{"old":"/api/v1/roles/paginated","type":0,"val":"paginated","end":""}],
     types: placeholder as Registry['roles.get_paginated_roles']['types'],
+  },
+  'roles.insert_user_roles': {
+    methods: ["POST"],
+    pattern: '/api/v1/roles/insert',
+    tokens: [{"old":"/api/v1/roles/insert","type":0,"val":"api","end":""},{"old":"/api/v1/roles/insert","type":0,"val":"v1","end":""},{"old":"/api/v1/roles/insert","type":0,"val":"roles","end":""},{"old":"/api/v1/roles/insert","type":0,"val":"insert","end":""}],
+    types: placeholder as Registry['roles.insert_user_roles']['types'],
+  },
+  'roles.update_user_role': {
+    methods: ["PATCH"],
+    pattern: '/api/v1/roles/update/:id',
+    tokens: [{"old":"/api/v1/roles/update/:id","type":0,"val":"api","end":""},{"old":"/api/v1/roles/update/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/roles/update/:id","type":0,"val":"roles","end":""},{"old":"/api/v1/roles/update/:id","type":0,"val":"update","end":""},{"old":"/api/v1/roles/update/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['roles.update_user_role']['types'],
+  },
+  'roles.delete_user_role': {
+    methods: ["DELETE"],
+    pattern: '/api/v1/roles/delete/:id',
+    tokens: [{"old":"/api/v1/roles/delete/:id","type":0,"val":"api","end":""},{"old":"/api/v1/roles/delete/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/roles/delete/:id","type":0,"val":"roles","end":""},{"old":"/api/v1/roles/delete/:id","type":0,"val":"delete","end":""},{"old":"/api/v1/roles/delete/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['roles.delete_user_role']['types'],
   },
 } as const satisfies Record<string, AdonisEndpoint>
 

@@ -20,6 +20,7 @@ router
         router.post('logout', [controllers.Auth, 'logout']).use(middleware.auth())
         router.post('logout_all', [controllers.Auth, 'logoutAll']).use(middleware.auth())
         router.post('register', [controllers.Auth, 'register'])
+        router.get('sections', [controllers.Auth, 'sections'])
       })
       .prefix('auth')
     router
@@ -71,6 +72,9 @@ router
         router.get('system/:id', [controllers.Roles, 'getRolesBySystem'])
         router.get('auth', [controllers.Roles, 'getRolesByAuthUser'])
         router.get('paginated', [controllers.Roles, 'getPaginatedRoles'])
+        router.post('insert', [controllers.Roles, 'insertUserRoles'])
+        router.patch('update/:id', [controllers.Roles, 'updateUserRole'])
+        router.delete('delete/:id', [controllers.Roles, 'deleteUserRole'])
       })
       .prefix('roles')
       .use(middleware.auth())

@@ -7,6 +7,8 @@ export interface ApiDefinition {
     verify: typeof routes['auth.verify']
     logout: typeof routes['auth.logout']
     logoutAll: typeof routes['auth.logout_all']
+    register: typeof routes['auth.register']
+    sections: typeof routes['auth.sections']
   }
   divisions: {
     getAllDivisions: typeof routes['divisions.get_all_divisions']
@@ -44,5 +46,8 @@ export interface ApiDefinition {
     getRolesBySystem: typeof routes['roles.get_roles_by_system']
     getRolesByAuthUser: typeof routes['roles.get_roles_by_auth_user']
     getPaginatedRoles: typeof routes['roles.get_paginated_roles']
+    insertUserRoles: typeof routes['roles.insert_user_roles']
+    updateUserRole: typeof routes['roles.update_user_role']
+    deleteUserRole: typeof routes['roles.delete_user_role']
   }
 }

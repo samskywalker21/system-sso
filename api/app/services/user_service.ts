@@ -1,4 +1,5 @@
 import User from '#models/user'
+import Role from '#models/role'
 
 interface UserData {
   fname: string
@@ -89,7 +90,12 @@ export class UserService {
 
   async insertUser(data: UserData) {
     const newUser = await User.create(data)
-    return newUser.save()
+    const { id } = newUser
+    const roleExists = await Role.findBy({ systemId: 1, userId: id })
+    if (!roleExists) {
+      await Role.create({ userId: id, systemId: 1, accessLevel: '4' })
+    }
+    return newUser
   }
 
   async updateUser(id: number, data: Partial<UserData>) {

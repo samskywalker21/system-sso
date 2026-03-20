@@ -31,7 +31,7 @@ export class SystemService {
 
   async insertSystem(data: SystemData) {
     const newSystem = await System.create(data)
-    return newSystem.save()
+    return newSystem
   }
 
   async updateSystem(id: number, data: Partial<SystemData>) {

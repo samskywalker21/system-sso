@@ -1,4 +1,5 @@
 import User from '#models/user'
+import { SectionService } from '#services/section_service'
 import { UserService } from '#services/user_service'
 import { LoginValidator } from '#validators/auth'
 import { InsertUserValidator } from '#validators/user'
@@ -42,5 +43,10 @@ export default class AuthController {
   async register(context: HttpContext, userService: UserService) {
     const data = await context.request.validateUsing(InsertUserValidator)
     return await userService.insertUser(data)
+  }
+
+  @inject()
+  async sections(context: HttpContext, sectionService: SectionService) {
+    return await sectionService.getActiveSections()
   }
 }

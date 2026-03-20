@@ -63,7 +63,7 @@ export class SectionService {
 
   async insertSection(data: SectionData) {
     const newSection = await Section.create(data)
-    return await newSection.save()
+    return newSection
   }
 
   async updateSection(id: number, data: Partial<SectionData>) {

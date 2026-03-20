@@ -6,8 +6,8 @@
 export const controllers = {
   Auth: () => import('#controllers/auth_controller'),
   Divisions: () => import('#controllers/divisions_controller'),
-  Sections: () => import('#controllers/sections_controller'),
-  Users: () => import('#controllers/users_controller'),
-  Systems: () => import('#controllers/systems_controller'),
   Roles: () => import('#controllers/roles_controller'),
+  Sections: () => import('#controllers/sections_controller'),
+  Systems: () => import('#controllers/systems_controller'),
+  Users: () => import('#controllers/users_controller'),
 }

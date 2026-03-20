@@ -1,4 +1,5 @@
 import { RoleService } from '#services/role_service'
+import { InsertRolesValidator, UpdateRolesValidator } from '#validators/role'
 import { inject } from '@adonisjs/core'
 import type { HttpContext } from '@adonisjs/core/http'
 
@@ -32,7 +33,17 @@ export default class RolesController {
     return await this.rolesService.getRolesByUser(Number(user.id))
   }
 
-  async insertUserRoles({ request }: HttpContext) {}
+  async insertUserRoles({ request }: HttpContext) {
+    const data = await request.validateUsing(InsertRolesValidator)
+    return await this.rolesService.insertUserRoles(data.roles)
+  }
 
-  async updateUserRole({ request }: HttpContext) {}
+  async updateUserRole({ request }: HttpContext) {
+    const { params, ...data } = await request.validateUsing(UpdateRolesValidator)
+    return await this.rolesService.updateUserRole(params.id, data)
+  }
+
+  async deleteUserRole({ request }: HttpContext) {
+    return await this.rolesService.deleteUserRole(request.param('id'))
+  }
 }

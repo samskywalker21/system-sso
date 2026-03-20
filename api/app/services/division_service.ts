@@ -40,7 +40,7 @@ export class DivisionService {
 
   async insertDivision(data: DivisionData) {
     const newDivision = await Division.create(data)
-    return await newDivision.save()
+    return newDivision
   }
 
   async updateDivision(id: number, data: Partial<DivisionData>) {
