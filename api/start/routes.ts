@@ -19,7 +19,7 @@ router
         router.get('verify', [controllers.Auth, 'verify']).use(middleware.auth())
         router.post('logout', [controllers.Auth, 'logout']).use(middleware.auth())
         router.post('logout_all', [controllers.Auth, 'logoutAll']).use(middleware.auth())
-        // router.post('register', [controllers.Users, 'insertUser'])
+        router.post('register', [controllers.Auth, 'register'])
       })
       .prefix('auth')
     router
