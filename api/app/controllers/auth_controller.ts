@@ -13,13 +13,12 @@ export default class AuthController {
     if (!user) {
       context.response.notFound()
     }
-    const accessToken = await User.accessTokens.create(user, ['*'], { name: 'access_token' })
-
-    context.response.encryptedCookie('access_token', accessToken.value?.release(), {
-      httpOnly: true,
-      sameSite: 'lax',
+    const accessToken = await User.accessTokens.create(user, ['*'], {
+      name: 'access_token',
+      expiresIn: '10h',
     })
-    context.response.ok('Login Successful')
+
+    return accessToken.value?.release()
   }
 
   async verify(context: HttpContext) {
