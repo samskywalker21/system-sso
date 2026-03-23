@@ -1,12 +1,13 @@
 import { Separator } from '@/components/ui/separator'
-import { Circle } from 'lucide-react'
+import dohLogo from '#/assets/doh-logo.png'
+import regionLogo from '#/assets/doh-regional-logo.png'
 
 const LoginHeader = () => {
   return (
     <div className='flex gap-2'>
       <div className='flex'>
-        <Circle size='60px' />
-        <Circle size='60px' />
+        <img src={dohLogo} className='size-15' />
+        <img src={regionLogo} className='size-15'/>
       </div>
       <Separator orientation='vertical' className='border' />
       <div className='flex flex-col justify-center gap-0'>
