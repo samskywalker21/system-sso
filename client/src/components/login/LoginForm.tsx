@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useForm, Controller, type SubmitHandler } from 'react-hook-form'
 import { Field, FieldError, FieldGroup, FieldLabel, FieldSet } from '@/components/ui/field'
 import {
@@ -7,8 +8,8 @@ import {
   InputGroupInput,
 } from '@/components/ui/input-group'
 import { Button } from '@/components/ui/button'
+import useLogin from '#/hooks/useLogin'
 import { CircleUser, KeyRound, Eye, EyeClosed, LogIn } from 'lucide-react'
-import { useState } from 'react'
 
 interface LoginFormData {
   username: string
@@ -17,6 +18,8 @@ interface LoginFormData {
 
 const LoginForm = () => {
   const [showPass, setShowPass] = useState(false)
+
+  const loginQuery = useLogin()
 
   const { handleSubmit, control, reset } = useForm<LoginFormData>({
     defaultValues: {
@@ -30,7 +33,7 @@ const LoginForm = () => {
   }
 
   const submitHandler: SubmitHandler<LoginFormData> = (data) => {
-    console.log(data)
+    loginQuery.mutate(data)
     reset()
   }
 
@@ -46,7 +49,7 @@ const LoginForm = () => {
                 <Field className='gap-1'>
                   <FieldLabel htmlFor={field.name}>Username</FieldLabel>
                   <InputGroup className='h-10'>
-                    <InputGroupInput type='text' {...field} className='text-sm/relaxed' />
+                    <InputGroupInput type='text' {...field} disabled={loginQuery.isPending} />
                     <InputGroupAddon>
                       <CircleUser className='size-5' />
                     </InputGroupAddon>
@@ -61,7 +64,11 @@ const LoginForm = () => {
                 <Field className='gap-1'>
                   <FieldLabel htmlFor={field.name}>Password</FieldLabel>
                   <InputGroup>
-                    <InputGroupInput type={showPass ? 'text' : 'password'} {...field} />
+                    <InputGroupInput
+                      type={showPass ? 'text' : 'password'}
+                      {...field}
+                      disabled={loginQuery.isPending}
+                    />
                     <InputGroupAddon>
                       <KeyRound className='size-5' />
                     </InputGroupAddon>
@@ -74,7 +81,12 @@ const LoginForm = () => {
                 </Field>
               )}
             />
-            <Button type='submit' variant='default' className='font-bold'>
+            <Button
+              type='submit'
+              variant='default'
+              className='font-bold'
+              disabled={loginQuery.isPending}
+            >
               <LogIn className='size-5' />
               SIGN IN
             </Button>
