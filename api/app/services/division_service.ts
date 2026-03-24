@@ -23,8 +23,7 @@ export class DivisionService {
     }
 
     const data = await filterQuery().paginate(page, limit)
-    const container = data.toJSON()
-    if (container.meta.lastPage < page && container.meta.total > 0) {
+    if (data.lastPage < page && data.total > 0) {
       return await filterQuery().paginate(1, limit)
     }
     return data

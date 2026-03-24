@@ -1,36 +1,44 @@
+import type { HttpContext } from '@adonisjs/core/http'
 import { RoleService } from '#services/role_service'
+import RoleTransformer from '#transformers/role_transformer'
 import { InsertRolesValidator, UpdateRolesValidator } from '#validators/role'
 import { inject } from '@adonisjs/core'
-import type { HttpContext } from '@adonisjs/core/http'
 
 @inject()
 export default class RolesController {
   constructor(protected rolesService: RoleService) {}
 
-  async getAllRoles() {
-    return await this.rolesService.getAllRoles()
+  async getAllRoles({ serialize }: HttpContext) {
+    const data = await this.rolesService.getAllRoles()
+    return await serialize(RoleTransformer.transform(data))
   }
 
-  async getPaginatedRoles({ request }: HttpContext) {
+  async getPaginatedRoles({ serialize, request }: HttpContext) {
     const page = Number(request.input('page', 1))
     const limit = Math.min(Number(request.input('limit', 10)), 50)
     const search = request.input('search', undefined)
-    return await this.rolesService.getPaginatedRoles(page, limit, search)
+    const data = await this.rolesService.getPaginatedRoles(page, limit, search)
+    const list = data.all()
+    const meta = data.getMeta()
+    return await serialize(RoleTransformer.paginate(list, meta))
   }
 
-  async getRolesByUser({ request }: HttpContext) {
+  async getRolesByUser({ serialize, request }: HttpContext) {
     const id = request.param('id')
-    return await this.rolesService.getRolesByUser(id)
+    const data = await this.rolesService.getRolesByUser(id)
+    return await serialize(RoleTransformer.transform(data))
   }
 
-  async getRolesBySystem({ request }: HttpContext) {
+  async getRolesBySystem({ serialize, request }: HttpContext) {
     const id = request.param('id')
-    return await this.rolesService.getRolesBySystem(id)
+    const data = await this.rolesService.getRolesBySystem(id)
+    return serialize(RoleTransformer.transform(data))
   }
 
-  async getRolesByAuthUser({ auth }: HttpContext) {
+  async getRolesByAuthUser({ serialize, auth }: HttpContext) {
     const user = auth.getUserOrFail()
-    return await this.rolesService.getRolesByUser(Number(user.id))
+    const data = await this.rolesService.getRolesByUser(Number(user.id))
+    return serialize(RoleTransformer.transform(data))
   }
 
   async insertUserRoles({ request }: HttpContext) {

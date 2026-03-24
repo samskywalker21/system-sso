@@ -2,6 +2,7 @@ import type { HttpContext } from '@adonisjs/core/http'
 import { inject } from '@adonisjs/core'
 import { SectionService } from '#services/section_service'
 import { InsertSectionValidator, UpdateSectionValidator } from '#validators/section'
+import SectionTransformer from '#transformers/section_transformer'
 
 @inject()
 export default class SectionsController {
@@ -11,11 +12,14 @@ export default class SectionsController {
     return await this.sectionService.getAllSections()
   }
 
-  async getPaginatedSections({ request }: HttpContext) {
+  async getPaginatedSections({ serialize, request }: HttpContext) {
     const page = Number(request.input('page', 1))
     const limit = Math.min(Number(request.input('limit', 10)), 50)
     const search = request.input('search', undefined)
-    return await this.sectionService.getPaginatedSections(page, limit, search)
+    const data = await this.sectionService.getPaginatedSections(page, limit, search)
+    const list = data.all()
+    const meta = data.getMeta()
+    return serialize(SectionTransformer.paginate(list, meta))
   }
 
   async getActiveSections() {

@@ -29,11 +29,7 @@ export class UserService {
   async getPaginatedUsers(page: number, limit: number, search?: string) {
     const filterQuery = () => {
       const query = User.query().preload('section', (subquery) => {
-        subquery
-          .select('section_name', 'section_code', 'division_id')
-          .preload('division', (subquery2) => {
-            subquery2.select('division_name', 'division_code')
-          })
+        subquery.preload('division')
       })
 
       if (search) {
@@ -57,8 +53,7 @@ export class UserService {
     }
 
     const data = await filterQuery().paginate(page, limit)
-    const container = data.toJSON()
-    if (container.meta.lastPage < page && container.meta.total > 0) {
+    if (data.lastPage < page && data.total > 0) {
       return await filterQuery().paginate(1, limit)
     }
     return data

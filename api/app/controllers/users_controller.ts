@@ -2,20 +2,25 @@ import type { HttpContext } from '@adonisjs/core/http'
 import { UserService } from '#services/user_service'
 import { inject } from '@adonisjs/core'
 import { InsertUserValidator, UpdateUserValidator } from '#validators/user'
+import UserTransformer from '#transformers/user_transformer'
 
 @inject()
 export default class UsersController {
   constructor(protected userService: UserService) {}
 
-  async getAllUsers() {
-    return await this.userService.getAllUsers()
+  async getAllUsers({ serialize }: HttpContext) {
+    const data = await this.userService.getAllUsers()
+    return serialize(UserTransformer.transform(data))
   }
 
-  async getPaginatedUsers({ request }: HttpContext) {
+  async getPaginatedUsers({ serialize, request }: HttpContext) {
     const page = Number(request.input('page', 1))
     const limit = Math.min(Number(request.input('limit', 10)), 50)
     const search = request.input('search', undefined)
-    return await this.userService.getPaginatedUsers(page, limit, search)
+    const data = await this.userService.getPaginatedUsers(page, limit, search)
+    const list = data.all()
+    const meta = data.getMeta()
+    return serialize(UserTransformer.paginate(list, meta))
   }
 
   async getActiveUsers() {

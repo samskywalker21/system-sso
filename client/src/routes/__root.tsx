@@ -20,22 +20,22 @@ function RootComponent() {
         <ThemeProvider defaultTheme='system'>
           <Outlet />
         </ThemeProvider>
+        <TanStackDevtools
+          config={{
+            position: 'bottom-right',
+          }}
+          plugins={[
+            {
+              name: 'Router',
+              render: <TanStackRouterDevtoolsPanel />,
+            },
+            {
+              name: 'Query',
+              render: <ReactQueryDevtoolsPanel />,
+            },
+          ]}
+        />
       </QueryClientProvider>
-      <TanStackDevtools
-        config={{
-          position: 'bottom-right',
-        }}
-        plugins={[
-          {
-            name: 'Router',
-            render: <TanStackRouterDevtoolsPanel />,
-          },
-          {
-            name: 'Query',
-            render: <ReactQueryDevtoolsPanel />,
-          },
-        ]}
-      />
     </>
   )
 }

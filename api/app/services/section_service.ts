@@ -19,9 +19,7 @@ export class SectionService {
 
   async getPaginatedSections(page: number, limit: number, search?: string) {
     const filterQuery = () => {
-      const query = Section.query().preload('division', (subquery) => {
-        subquery.select('division_name')
-      })
+      const query = Section.query().preload('division')
       if (search) {
         query
           .whereILike('section_name', `%${search}%`)
@@ -36,10 +34,10 @@ export class SectionService {
     }
 
     const data = await filterQuery().paginate(page, limit)
-    const container = data.toJSON()
-    if (container.meta.lastPage < page && container.meta.total > 0) {
+    if (data.lastPage < page && data.total > 0) {
       return await filterQuery().paginate(1, limit)
     }
+
     return data
   }
 

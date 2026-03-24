@@ -1,6 +1,7 @@
 import User from '#models/user'
 import { SectionService } from '#services/section_service'
 import { UserService } from '#services/user_service'
+import SectionTransformer from '#transformers/section_transformer'
 import { LoginValidator } from '#validators/auth'
 import { InsertUserValidator } from '#validators/user'
 import { inject } from '@adonisjs/core'
@@ -45,7 +46,8 @@ export default class AuthController {
   }
 
   @inject()
-  async sections(context: HttpContext, sectionService: SectionService) {
-    return await sectionService.getActiveSections()
+  async sections({ serialize }: HttpContext, sectionService: SectionService) {
+    const data = await sectionService.getActiveSections()
+    return await serialize(SectionTransformer.transform(data))
   }
 }
