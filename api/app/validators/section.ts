@@ -1,17 +1,17 @@
 import vine from '@vinejs/vine'
 
 export const InsertSectionValidator = vine.create({
-  section_name: vine.string().minLength(3).trim(),
-  section_code: vine.string().maxLength(5).trim(),
+  sectionName: vine.string().minLength(3).trim(),
+  sectionCode: vine.string().maxLength(5).trim(),
   status: vine.enum(['A', 'I']).optional(),
-  division_id: vine.number(),
+  divisionId: vine.number(),
 })
 
 export const UpdateSectionValidator = vine.create({
-  section_name: vine.string().minLength(3).trim().optional(),
-  section_code: vine.string().maxLength(5).trim().optional(),
+  sectionName: vine.string().minLength(3).trim().optional(),
+  sectionCode: vine.string().maxLength(5).trim().optional(),
   status: vine.enum(['A', 'I']).optional(),
-  division_id: vine.number().optional(),
+  divisionId: vine.number().optional(),
   params: vine.object({
     id: vine.number(),
   }),

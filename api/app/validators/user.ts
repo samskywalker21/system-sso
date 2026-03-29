@@ -7,7 +7,7 @@ export const InsertUserValidator = vine.create({
   username: vine.string().minLength(3).trim(),
   password: vine.string().minLength(6).trim(),
   position: vine.string().minLength(3).trim(),
-  section_id: vine.number(),
+  sectionId: vine.number(),
   status: vine.enum(['A', 'I']).optional(),
 })
 
@@ -18,7 +18,7 @@ export const UpdateUserValidator = vine.create({
   username: vine.string().minLength(3).trim().optional(),
   password: vine.string().minLength(6).trim().optional(),
   position: vine.string().minLength(3).trim().optional(),
-  section_id: vine.number().optional(),
+  sectionId: vine.number().optional(),
   status: vine.enum(['A', 'I']).optional(),
   params: vine.object({
     id: vine.number(),

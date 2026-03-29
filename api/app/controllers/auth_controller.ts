@@ -14,6 +14,9 @@ export default class AuthController {
     if (!user) {
       context.response.notFound()
     }
+    if (user.status !== 'A') {
+      context.response.badRequest('User is inactive')
+    }
     const accessToken = await User.accessTokens.create(user, ['*'], {
       name: 'access_token',
       expiresIn: '10h',
@@ -28,14 +31,12 @@ export default class AuthController {
 
   async logout(context: HttpContext) {
     await context.auth.use('api').invalidateToken()
-    context.response.clearCookie('access_token')
     context.response.ok('Logout Successful')
   }
 
   async logoutAll(context: HttpContext) {
     const user = context.auth.getUserOrFail()
     await User.accessTokens.deleteAll(user)
-    context.response.clearCookie('access_token')
     context.response.ok('Logout Successful')
   }
 

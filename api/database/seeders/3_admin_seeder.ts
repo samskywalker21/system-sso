@@ -11,6 +11,7 @@ export default class extends BaseSeeder {
       password: 'admin',
       position: 'Administrator',
       sectionId: 3,
+      status: 'A',
     })
   }
 }
