@@ -18,6 +18,12 @@ const routes = {
     tokens: [{"old":"/api/v1/auth/verify","type":0,"val":"api","end":""},{"old":"/api/v1/auth/verify","type":0,"val":"v1","end":""},{"old":"/api/v1/auth/verify","type":0,"val":"auth","end":""},{"old":"/api/v1/auth/verify","type":0,"val":"verify","end":""}],
     types: placeholder as Registry['auth.verify']['types'],
   },
+  'auth.verify_token': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/auth/verify_token',
+    tokens: [{"old":"/api/v1/auth/verify_token","type":0,"val":"api","end":""},{"old":"/api/v1/auth/verify_token","type":0,"val":"v1","end":""},{"old":"/api/v1/auth/verify_token","type":0,"val":"auth","end":""},{"old":"/api/v1/auth/verify_token","type":0,"val":"verify_token","end":""}],
+    types: placeholder as Registry['auth.verify_token']['types'],
+  },
   'auth.logout': {
     methods: ["POST"],
     pattern: '/api/v1/auth/logout',
@@ -197,6 +203,12 @@ const routes = {
     pattern: '/api/v1/roles/auth',
     tokens: [{"old":"/api/v1/roles/auth","type":0,"val":"api","end":""},{"old":"/api/v1/roles/auth","type":0,"val":"v1","end":""},{"old":"/api/v1/roles/auth","type":0,"val":"roles","end":""},{"old":"/api/v1/roles/auth","type":0,"val":"auth","end":""}],
     types: placeholder as Registry['roles.get_roles_by_auth_user']['types'],
+  },
+  'roles.get_auth_user_role_by_system': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/roles/auth/system/:id',
+    tokens: [{"old":"/api/v1/roles/auth/system/:id","type":0,"val":"api","end":""},{"old":"/api/v1/roles/auth/system/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/roles/auth/system/:id","type":0,"val":"roles","end":""},{"old":"/api/v1/roles/auth/system/:id","type":0,"val":"auth","end":""},{"old":"/api/v1/roles/auth/system/:id","type":0,"val":"system","end":""},{"old":"/api/v1/roles/auth/system/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['roles.get_auth_user_role_by_system']['types'],
   },
   'roles.get_paginated_roles': {
     methods: ["GET","HEAD"],

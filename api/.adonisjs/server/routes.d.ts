@@ -6,6 +6,7 @@ export type ScannedRoutes = {
   ALL: {
     'auth.login': { paramsTuple?: []; params?: {} }
     'auth.verify': { paramsTuple?: []; params?: {} }
+    'auth.verify_token': { paramsTuple?: []; params?: {} }
     'auth.logout': { paramsTuple?: []; params?: {} }
     'auth.logout_all': { paramsTuple?: []; params?: {} }
     'auth.register': { paramsTuple?: []; params?: {} }
@@ -36,6 +37,7 @@ export type ScannedRoutes = {
     'roles.get_roles_by_user': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'roles.get_roles_by_system': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'roles.get_roles_by_auth_user': { paramsTuple?: []; params?: {} }
+    'roles.get_auth_user_role_by_system': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'roles.get_paginated_roles': { paramsTuple?: []; params?: {} }
     'roles.insert_user_roles': { paramsTuple?: []; params?: {} }
     'roles.update_user_role': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -54,6 +56,7 @@ export type ScannedRoutes = {
   }
   GET: {
     'auth.verify': { paramsTuple?: []; params?: {} }
+    'auth.verify_token': { paramsTuple?: []; params?: {} }
     'auth.sections': { paramsTuple?: []; params?: {} }
     'divisions.get_all_divisions': { paramsTuple?: []; params?: {} }
     'divisions.get_active_divisions': { paramsTuple?: []; params?: {} }
@@ -73,10 +76,12 @@ export type ScannedRoutes = {
     'roles.get_roles_by_user': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'roles.get_roles_by_system': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'roles.get_roles_by_auth_user': { paramsTuple?: []; params?: {} }
+    'roles.get_auth_user_role_by_system': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'roles.get_paginated_roles': { paramsTuple?: []; params?: {} }
   }
   HEAD: {
     'auth.verify': { paramsTuple?: []; params?: {} }
+    'auth.verify_token': { paramsTuple?: []; params?: {} }
     'auth.sections': { paramsTuple?: []; params?: {} }
     'divisions.get_all_divisions': { paramsTuple?: []; params?: {} }
     'divisions.get_active_divisions': { paramsTuple?: []; params?: {} }
@@ -96,6 +101,7 @@ export type ScannedRoutes = {
     'roles.get_roles_by_user': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'roles.get_roles_by_system': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'roles.get_roles_by_auth_user': { paramsTuple?: []; params?: {} }
+    'roles.get_auth_user_role_by_system': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'roles.get_paginated_roles': { paramsTuple?: []; params?: {} }
   }
   PATCH: {

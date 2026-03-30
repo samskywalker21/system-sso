@@ -8,7 +8,7 @@ interface UserData {
   username: string
   password: string
   position: string
-  section_id: number
+  sectionId: number
   status?: 'A' | 'I'
 }
 

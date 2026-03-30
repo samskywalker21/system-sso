@@ -29,6 +29,11 @@ export default class AuthController {
     return context.auth.user
   }
 
+  async verifyToken({ auth }: HttpContext) {
+    const isAuthenticated = await auth.authenticate()
+    return isAuthenticated ? true : false
+  }
+
   async logout(context: HttpContext) {
     await context.auth.use('api').invalidateToken()
     context.response.ok('Logout Successful')

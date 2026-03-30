@@ -22,7 +22,7 @@ const useLogin = () => {
         message: 'Redirecting to the Home...',
         color: 'green',
       })
-      setTimeout(() => nav({ to: '/home' }), 4000)
+      setTimeout(() => nav({ to: '/home' }), 3000)
     },
     onError() {
       notifications.show({

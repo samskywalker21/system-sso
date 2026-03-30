@@ -17,6 +17,7 @@ router
       .group(() => {
         router.post('login', [controllers.Auth, 'login'])
         router.get('verify', [controllers.Auth, 'verify']).use(middleware.auth())
+        router.get('verify_token', [controllers.Auth, 'verifyToken']).use(middleware.auth())
         router.post('logout', [controllers.Auth, 'logout']).use(middleware.auth())
         router.post('logout_all', [controllers.Auth, 'logoutAll']).use(middleware.auth())
         router.post('register', [controllers.Auth, 'register'])
@@ -71,6 +72,7 @@ router
         router.get('user/:id', [controllers.Roles, 'getRolesByUser'])
         router.get('system/:id', [controllers.Roles, 'getRolesBySystem'])
         router.get('auth', [controllers.Roles, 'getRolesByAuthUser'])
+        router.get('auth/system/:id', [controllers.Roles, 'getAuthUserRoleBySystem'])
         router.get('paginated', [controllers.Roles, 'getPaginatedRoles'])
         router.post('insert', [controllers.Roles, 'insertUserRoles'])
         router.patch('update/:id', [controllers.Roles, 'updateUserRole'])

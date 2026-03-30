@@ -1,12 +1,13 @@
-import { Divider, Flex, Grid, Stack, Title, Text } from '@mantine/core'
-import { Circle } from 'lucide-react'
+import { Divider, Flex, Grid, Stack, Title, Text, Image } from '@mantine/core'
+import dohLogo from '#/assets/dohLogo.png'
+import regionLogo from '#/assets/regionLogo.png'
 
 const DOHHeader = () => {
   return (
     <Flex direction='row' gap='md'>
       <Grid>
-        <Circle size='60px' />
-        <Circle size='60px' />
+        <Image src={dohLogo} w='60' />
+        <Image src={regionLogo} w='60' />
       </Grid>
       <Divider orientation='vertical' />
       <Stack justify='center' gap='0'>

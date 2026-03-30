@@ -41,6 +41,13 @@ export default class RolesController {
     return serialize(RoleTransformer.transform(data))
   }
 
+  async getAuthUserRoleBySystem({ auth, request, serialize }: HttpContext) {
+    const systemId = request.param('id')
+    const { id } = auth.getUserOrFail()
+    const data = await this.rolesService.getAuthUserRoleBySystem(Number(id), systemId)
+    return serialize(RoleTransformer.transform(data))
+  }
+
   async insertUserRoles({ request }: HttpContext) {
     const data = await request.validateUsing(InsertRolesValidator)
     return await this.rolesService.insertUserRoles(data.roles)

@@ -5,6 +5,7 @@ export interface ApiDefinition {
   auth: {
     login: typeof routes['auth.login']
     verify: typeof routes['auth.verify']
+    verifyToken: typeof routes['auth.verify_token']
     logout: typeof routes['auth.logout']
     logoutAll: typeof routes['auth.logout_all']
     register: typeof routes['auth.register']
@@ -45,6 +46,7 @@ export interface ApiDefinition {
     getRolesByUser: typeof routes['roles.get_roles_by_user']
     getRolesBySystem: typeof routes['roles.get_roles_by_system']
     getRolesByAuthUser: typeof routes['roles.get_roles_by_auth_user']
+    getAuthUserRoleBySystem: typeof routes['roles.get_auth_user_role_by_system']
     getPaginatedRoles: typeof routes['roles.get_paginated_roles']
     insertUserRoles: typeof routes['roles.insert_user_roles']
     updateUserRole: typeof routes['roles.update_user_role']

@@ -79,6 +79,10 @@ export class RoleService {
       })
   }
 
+  async getAuthUserRoleBySystem(userId: number, systemId: number) {
+    return await Role.findBy({ userId, systemId })
+  }
+
   async insertUserRoles(roles: RoleData[]) {
     const roleMap = roles.map(async (role) => {
       const doesExist = await Role.findBy({ systemId: role.systemId, userId: role.userId })

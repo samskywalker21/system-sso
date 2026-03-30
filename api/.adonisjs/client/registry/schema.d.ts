@@ -31,6 +31,18 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth_controller').default['verify']>>>
     }
   }
+  'auth.verify_token': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/auth/verify_token'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/auth_controller').default['verifyToken']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth_controller').default['verifyToken']>>>
+    }
+  }
   'auth.logout': {
     methods: ["POST"]
     pattern: '/api/v1/auth/logout'
@@ -389,6 +401,18 @@ export interface Registry {
       query: {}
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/roles_controller').default['getRolesByAuthUser']>>>
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/roles_controller').default['getRolesByAuthUser']>>>
+    }
+  }
+  'roles.get_auth_user_role_by_system': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/roles/auth/system/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/roles_controller').default['getAuthUserRoleBySystem']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/roles_controller').default['getAuthUserRoleBySystem']>>>
     }
   }
   'roles.get_paginated_roles': {
