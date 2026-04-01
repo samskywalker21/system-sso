@@ -6,13 +6,7 @@ import LoginForm from '#/components/forms/LoginForm'
 const LoginPage = () => {
   return (
     <Flex justify='center' align='center' mih='100dvh'>
-      <Card
-        miw='500px'
-        p='xl'
-        visibleFrom='xs'
-        shadow='0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
-        radius='lg'
-      >
+      <Card miw='500px' p='xl' visibleFrom='xs' shadow='lg' withBorder radius='lg'>
         <DOHHeader />
         <Flex justify='center' py='2rem'>
           <Title order={2}>Single Sign-On Service</Title>

@@ -6,13 +6,7 @@ import { ArrowBigLeft } from 'lucide-react'
 const RegisterPage = () => {
   return (
     <Flex justify='center' align='center' mih='100dvh'>
-      <Card
-        miw={'600px'}
-        p='xl'
-        visibleFrom='xs'
-        shadow='0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
-        radius='lg'
-      >
+      <Card miw={'600px'} p='xl' visibleFrom='xs' shadow='lg' withBorder radius='lg'>
         <Flex justify='start' pb={'2rem'}>
           <Title order={3}>Sign Up Form</Title>
         </Flex>

@@ -1,10 +1,9 @@
-import { AppShell, ScrollArea, NavLink } from '@mantine/core'
+import { AppShell, ScrollArea, NavLink, Flex } from '@mantine/core'
 import { Link, useNavigate } from '@tanstack/react-router'
-import { useMutation, useSuspenseQuery } from '@tanstack/react-query'
-import { userRoleQuery, logOutQuery } from '#/utils/queryOptions'
+import { useSuspenseQuery } from '@tanstack/react-query'
+import { userRoleQuery } from '#/utils/queryOptions'
 import NavBarHeader from '../layouts/NavBarHeader'
-import { User } from 'lucide-react'
-import { useEffect } from 'react'
+import MenuBar from './MenuBar'
 
 const NavBarMenu = () => {
   const nav = useNavigate()
@@ -16,19 +15,6 @@ const NavBarMenu = () => {
       },
     },
   } = useSuspenseQuery(userRoleQuery)
-
-  const query = useMutation(logOutQuery)
-
-  useEffect(() => {
-    if (query.isSuccess) {
-      localStorage.removeItem('access_token')
-    }
-    nav({ to: '/' })
-  }, [query])
-
-  const logOut = () => {
-    query.mutate()
-  }
 
   return (
     <>
@@ -44,7 +30,9 @@ const NavBarMenu = () => {
         </NavLink>
       </AppShell.Section>
       <AppShell.Section>
-        <NavLink label='Sign Out' leftSection={<User size='1rem' />} onClick={logOut} />
+        <Flex p={'md'} direction={'column-reverse'} hiddenFrom='sm'>
+          <MenuBar />
+        </Flex>
       </AppShell.Section>
     </>
   )

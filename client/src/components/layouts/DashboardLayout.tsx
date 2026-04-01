@@ -1,7 +1,8 @@
 import { useDisclosure } from '@mantine/hooks'
-import { AppShell, Burger, Flex, Text } from '@mantine/core'
+import { AppShell, Burger, Flex } from '@mantine/core'
 import NavBarMenu from '#/components/menus/NavBarMenu'
 import { Outlet } from '@tanstack/react-router'
+import MenuBar from '../menus/MenuBar'
 
 const DashboardLayout = () => {
   const [mobileOpened, { toggle }] = useDisclosure(false)
@@ -14,7 +15,7 @@ const DashboardLayout = () => {
         breakpoint: 'sm',
         collapsed: { mobile: !mobileOpened },
       }}
-      padding={'md'}
+      padding='md'
       transitionDuration={400}
       transitionTimingFunction='ease'
     >
@@ -25,10 +26,10 @@ const DashboardLayout = () => {
         <NavBarMenu />
       </AppShell.Navbar>
       <AppShell.Main>
-        <Flex bd={'1px white solid'}>
+        <Flex p='md'>
           <Burger size='sm' hiddenFrom='sm' onClick={toggle} opened={mobileOpened} />
-          <Flex align={'center'} direction={'row-reverse'} bd={'1px green solid'} w={'100%'}>
-            <Text>test</Text>
+          <Flex direction={'row-reverse'} w={'100%'} align={'center'} visibleFrom='sm'>
+            <MenuBar />
           </Flex>
         </Flex>
         <Outlet />

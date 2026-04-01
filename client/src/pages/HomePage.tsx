@@ -1,4 +1,5 @@
-import { Card, Flex, Stack, Title } from '@mantine/core'
+import ProfileCard from '#/components/cards/ProfileCard'
+import { Flex } from '@mantine/core'
 
 const HomePage = () => {
   return (
@@ -9,22 +10,9 @@ const HomePage = () => {
         sm: 'row',
       }}
       align={'center'}
+      p='md'
     >
-      <Card w='500px'>
-        <Stack>
-          <Title size={'1.5rem'}>Profile</Title>
-        </Stack>
-      </Card>
-      <Card w='500px'>
-        <Stack>
-          <Title size={'1.5rem'}>Credentials</Title>
-        </Stack>
-      </Card>
-      <Card w='500px'>
-        <Stack>
-          <Title size={'1.5rem'}>Roles</Title>
-        </Stack>
-      </Card>
+      <ProfileCard />
     </Flex>
   )
 }

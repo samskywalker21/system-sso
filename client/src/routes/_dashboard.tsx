@@ -9,8 +9,12 @@ export const Route = createFileRoute('/_dashboard')({
       throw redirect({ to: '/' })
     }
   },
-  loader: ({ context }) => {
-    context.queryClient.ensureQueryData(userRoleQuery)
-    context.queryClient.ensureQueryData(userProfileQuery)
+  loader: async ({ context }) => {
+    try {
+      await context.queryClient.ensureQueryData(userRoleQuery)
+      await context.queryClient.ensureQueryData(userProfileQuery)
+    } catch (err) {
+      throw redirect({ to: '/' })
+    }
   },
 })
