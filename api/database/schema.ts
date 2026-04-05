@@ -8,7 +8,18 @@ import { BaseModel, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 
 export class AuthAccessTokenSchema extends BaseModel {
-  static $columns = ['abilities', 'createdAt', 'expiresAt', 'hash', 'id', 'lastUsedAt', 'name', 'tokenableId', 'type', 'updatedAt'] as const
+  static $columns = [
+    'abilities',
+    'createdAt',
+    'expiresAt',
+    'hash',
+    'id',
+    'lastUsedAt',
+    'name',
+    'tokenableId',
+    'type',
+    'updatedAt',
+  ] as const
   $columns = AuthAccessTokenSchema.$columns
   @column()
   declare abilities: string
@@ -33,7 +44,14 @@ export class AuthAccessTokenSchema extends BaseModel {
 }
 
 export class DivisionSchema extends BaseModel {
-  static $columns = ['createdAt', 'divisionCode', 'divisionName', 'id', 'status', 'updatedAt'] as const
+  static $columns = [
+    'createdAt',
+    'divisionCode',
+    'divisionName',
+    'id',
+    'status',
+    'updatedAt',
+  ] as const
   $columns = DivisionSchema.$columns
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime | null
@@ -67,7 +85,15 @@ export class RoleSchema extends BaseModel {
 }
 
 export class SectionSchema extends BaseModel {
-  static $columns = ['createdAt', 'divisionId', 'id', 'sectionCode', 'sectionName', 'status', 'updatedAt'] as const
+  static $columns = [
+    'createdAt',
+    'divisionId',
+    'id',
+    'sectionCode',
+    'sectionName',
+    'status',
+    'updatedAt',
+  ] as const
   $columns = SectionSchema.$columns
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime | null
@@ -101,7 +127,19 @@ export class SystemSchema extends BaseModel {
 }
 
 export class UserSchema extends BaseModel {
-  static $columns = ['createdAt', 'fname', 'id', 'lname', 'mname', 'password', 'position', 'sectionId', 'status', 'updatedAt', 'username'] as const
+  static $columns = [
+    'createdAt',
+    'fname',
+    'id',
+    'lname',
+    'mname',
+    'password',
+    'position',
+    'sectionId',
+    'status',
+    'updatedAt',
+    'username',
+  ] as const
   $columns = UserSchema.$columns
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

@@ -22,6 +22,14 @@ export default class AuthController {
       expiresIn: '10h',
     })
 
+    const token = accessToken.value?.release()
+
+    context.response.encryptedCookie('access_token', token, {
+      httpOnly: true,
+      path: '/',
+      sameSite: 'lax',
+    })
+
     return accessToken.value?.release()
   }
 
@@ -36,12 +44,14 @@ export default class AuthController {
 
   async logout(context: HttpContext) {
     await context.auth.use('api').invalidateToken()
+    context.response.clearCookie('access_token')
     context.response.ok('Logout Successful')
   }
 
   async logoutAll(context: HttpContext) {
     const user = context.auth.getUserOrFail()
     await User.accessTokens.deleteAll(user)
+    context.response.clearCookie('access_token')
     context.response.ok('Logout Successful')
   }
 

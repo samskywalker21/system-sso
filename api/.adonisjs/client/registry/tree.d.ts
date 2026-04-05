@@ -34,6 +34,7 @@ export interface ApiDefinition {
     getUserById: typeof routes['users.get_user_by_id']
     insertUser: typeof routes['users.insert_user']
     updateUser: typeof routes['users.update_user']
+    changePassword: typeof routes['users.change_password']
   }
   systems: {
     getAllSystems: typeof routes['systems.get_all_systems']

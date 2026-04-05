@@ -1,5 +1,6 @@
 import User from '#models/user'
 import Role from '#models/role'
+import hash from '@adonisjs/core/services/hash'
 
 interface UserData {
   fname: string
@@ -97,5 +98,16 @@ export class UserService {
     const user = await User.findOrFail(id)
     const newUser = user.merge(data)
     return newUser.save()
+  }
+
+  async changePassword(id: number, oldPassword: string, newPassword: string) {
+    const user = await User.findOrFail(id)
+    const isSame = await hash.verify(user.password, oldPassword)
+    if (isSame) {
+      user.password = newPassword
+      return await user.save()
+    } else {
+      return false
+    }
   }
 }

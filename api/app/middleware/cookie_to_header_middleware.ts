@@ -6,7 +6,7 @@ export default class CookieToHeaderMiddleware {
     /**
      * Middleware logic goes here (before the next call)
      */
-    const token = (ctx.request.encryptedCookie('access_token') ?? '').trim()
+    const token = await (ctx.request.encryptedCookie('access_token') ?? '').trim()
 
     if (token) {
       ctx.request.request.headers.authorization = `Bearer ${token}`

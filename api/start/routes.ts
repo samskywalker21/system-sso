@@ -54,6 +54,7 @@ router
         router.get('id/:id', [controllers.Users, 'getUserById'])
         router.post('insert', [controllers.Users, 'insertUser'])
         router.patch('update/:id', [controllers.Users, 'updateUser'])
+        router.patch('change_password', [controllers.Users, 'changePassword'])
       })
       .prefix('users')
       .use(middleware.auth())

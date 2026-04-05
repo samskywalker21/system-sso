@@ -29,6 +29,7 @@ export type ScannedRoutes = {
     'users.get_user_by_id': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'users.insert_user': { paramsTuple?: []; params?: {} }
     'users.update_user': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'users.change_password': { paramsTuple?: []; params?: {} }
     'systems.get_all_systems': { paramsTuple?: []; params?: {} }
     'systems.get_paginated_systems': { paramsTuple?: []; params?: {} }
     'systems.insert_system': { paramsTuple?: []; params?: {} }
@@ -108,6 +109,7 @@ export type ScannedRoutes = {
     'divisions.update_division': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'sections.update_section': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'users.update_user': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'users.change_password': { paramsTuple?: []; params?: {} }
     'systems.update_system': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'roles.update_user_role': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }

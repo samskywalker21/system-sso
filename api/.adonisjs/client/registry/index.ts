@@ -156,6 +156,12 @@ const routes = {
     tokens: [{"old":"/api/v1/users/update/:id","type":0,"val":"api","end":""},{"old":"/api/v1/users/update/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/users/update/:id","type":0,"val":"users","end":""},{"old":"/api/v1/users/update/:id","type":0,"val":"update","end":""},{"old":"/api/v1/users/update/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['users.update_user']['types'],
   },
+  'users.change_password': {
+    methods: ["PATCH"],
+    pattern: '/api/v1/users/change_password',
+    tokens: [{"old":"/api/v1/users/change_password","type":0,"val":"api","end":""},{"old":"/api/v1/users/change_password","type":0,"val":"v1","end":""},{"old":"/api/v1/users/change_password","type":0,"val":"users","end":""},{"old":"/api/v1/users/change_password","type":0,"val":"change_password","end":""}],
+    types: placeholder as Registry['users.change_password']['types'],
+  },
   'systems.get_all_systems': {
     methods: ["GET","HEAD"],
     pattern: '/api/v1/systems/all',

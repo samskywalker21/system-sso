@@ -1,7 +1,7 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import { UserService } from '#services/user_service'
 import { inject } from '@adonisjs/core'
-import { InsertUserValidator, UpdateUserValidator } from '#validators/user'
+import { ChangePasswordValidator, InsertUserValidator, UpdateUserValidator } from '#validators/user'
 import UserTransformer from '#transformers/user_transformer'
 
 @inject()
@@ -41,5 +41,20 @@ export default class UsersController {
     const { params, ...data } = await request.validateUsing(UpdateUserValidator)
     const id = params.id
     return await this.userService.updateUser(id, data)
+  }
+
+  async changePassword({ request, auth, response }: HttpContext) {
+    const data = await request.validateUsing(ChangePasswordValidator)
+    const { id } = auth.getUserOrFail()
+    const result = await this.userService.changePassword(
+      Number(id),
+      data.oldPassword,
+      data.newPassword
+    )
+    if (result) {
+      return response.ok('Password has been changed')
+    } else {
+      return response.badRequest('Invalid Credentials')
+    }
   }
 }

@@ -307,6 +307,18 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/users_controller').default['updateUser']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
+  'users.change_password': {
+    methods: ["PATCH"]
+    pattern: '/api/v1/users/change_password'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/user').ChangePasswordValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/user').ChangePasswordValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/users_controller').default['changePassword']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/users_controller').default['changePassword']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
   'systems.get_all_systems': {
     methods: ["GET","HEAD"]
     pattern: '/api/v1/systems/all'
