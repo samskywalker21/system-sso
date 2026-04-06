@@ -71,7 +71,29 @@
         </div>
         <div class="flex w-full flex-col gap-1">
           <label for="section">Section</label>
-          <Select id="section" size="small"></Select>
+          <Select
+            id="section"
+            size="small"
+            :loading="isPending"
+            v-model="sectionId"
+            :="sectionIdProps"
+            :invalid="errors.sectionId?.length ? true : false"
+            :options="groupedSections"
+            option-label="label"
+            option-value="value"
+            option-group-label="groupLabel"
+            option-group-children="items"
+            filter
+          >
+            <template #optiongroup="slotProps">
+              <Divider align="left" class="p-0">
+                {{ slotProps.option.groupLabel }}
+              </Divider>
+            </template>
+          </Select>
+          <Message severity="error" variant="simple" v-if="errors.sectionId?.length">{{
+            errors.sectionId
+          }}</Message>
         </div>
       </div>
       <Divider align="left" type="solid">
@@ -139,36 +161,60 @@
 </template>
 
 <script setup lang="ts">
-import { Divider, InputText, Select, Password, Button, Message } from 'primevue'
+import { Divider, InputText, Select, AutoComplete, Password, Button, Message } from 'primevue'
 import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import * as z from 'zod'
+import { useRegister } from '@/lib/composables/useRegister'
+import { useSectionOptions } from '@/lib/composables/useSectionOptions'
 
-const registerSchema = z.object({
-  fname: z.string().nonempty('Must not be empty.').min(2, 'Must be at least 2 character').trim(),
-  mname: z.string().trim().optional(),
-  lname: z.string().nonempty('Must not be empty.').min(2, 'Must be at least 2 character').trim(),
-  position: z.string().nonempty('Must not be empty.').min(2, 'Must be at least 2 character').trim(),
-  username: z.string().nonempty('Must not be empty.').min(2, 'Must be at least 2 character').trim(),
-  password: z.string().nonempty('Must not be empty.').min(2, 'Must be at least 2 character').trim(),
-  confirmPassword: z
-    .string()
-    .nonempty('Must not be empty.')
-    .min(2, 'Must be at least 2 character')
-    .trim(),
-})
+const registerSchema = z
+  .object({
+    fname: z.string().nonempty('Must not be empty.').min(2, 'Must be at least 2 character').trim(),
+    mname: z.string().trim().optional(),
+    lname: z.string().nonempty('Must not be empty.').min(2, 'Must be at least 2 character').trim(),
+    position: z
+      .string()
+      .nonempty('Must not be empty.')
+      .min(2, 'Must be at least 2 character')
+      .trim(),
+    sectionId: z.number().min(1, 'Must not be empty.'),
+    username: z
+      .string()
+      .nonempty('Must not be empty.')
+      .min(2, 'Must be at least 2 character')
+      .trim(),
+    password: z
+      .string()
+      .nonempty('Must not be empty.')
+      .min(8, 'Must be at least 8 character')
+      .trim(),
+    confirmPassword: z
+      .string()
+      .nonempty('Must not be empty.')
+      .min(8, 'Must be at least 8 character')
+      .trim(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: 'Passwords do not match.',
+    path: ['confirmPassword'],
+  })
+
+const query = useRegister()
+const { groupedSections, isPending } = useSectionOptions()
 
 const { errors, defineField, handleSubmit } = useForm({
   name: 'register-form',
   validationSchema: toTypedSchema(registerSchema),
   initialValues: {
     fname: '',
-    mname: undefined,
+    mname: '',
     lname: '',
     position: '',
     username: '',
     password: '',
     confirmPassword: '',
+    sectionId: 0,
   },
 })
 
@@ -176,12 +222,13 @@ const [fname, fnameProps] = defineField('fname')
 const [mname, mnameProps] = defineField('mname')
 const [lname, lnameProps] = defineField('lname')
 const [position, positionProps] = defineField('position')
+const [sectionId, sectionIdProps] = defineField('sectionId')
 const [username, usernameProps] = defineField('username')
 const [password, passwordProps] = defineField('password')
 const [cPassword, cPasswordProps] = defineField('confirmPassword')
 
 const submitHandler = handleSubmit((values) => {
-  console.log(values)
+  query.mutate(values)
 })
 </script>
 
