@@ -161,7 +161,8 @@
 </template>
 
 <script setup lang="ts">
-import { Divider, InputText, Select, AutoComplete, Password, Button, Message } from 'primevue'
+import { Divider, InputText, Select, Password, Button, Message } from 'primevue'
+import { useToast } from 'primevue/usetoast'
 import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import * as z from 'zod'
@@ -203,7 +204,7 @@ const registerSchema = z
 const query = useRegister()
 const { groupedSections, isPending } = useSectionOptions()
 
-const { errors, defineField, handleSubmit } = useForm({
+const { errors, defineField, handleSubmit, resetForm } = useForm({
   name: 'register-form',
   validationSchema: toTypedSchema(registerSchema),
   initialValues: {
@@ -227,8 +228,30 @@ const [username, usernameProps] = defineField('username')
 const [password, passwordProps] = defineField('password')
 const [cPassword, cPasswordProps] = defineField('confirmPassword')
 
+const toast = useToast()
+
 const submitHandler = handleSubmit((values) => {
-  query.mutate(values)
+  query.mutate(values, {
+    onSuccess() {
+      toast.add({
+        severity: 'success',
+        closable: false,
+        summary: 'Success!',
+        detail: 'Contact the ICTU to active your account.',
+        life: 3000,
+      })
+      resetForm()
+    },
+    onError() {
+      toast.add({
+        severity: 'error',
+        closable: false,
+        summary: 'Error!',
+        detail: 'Something went wrong.',
+        life: 3000,
+      })
+    },
+  })
 })
 </script>
 

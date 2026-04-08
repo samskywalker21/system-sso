@@ -12,6 +12,7 @@
             v-model="username"
             :="usernameProps"
             :invalid="errors.username?.length ? true : false"
+            :disabled="isSuccess"
           />
           <label for="username">Username</label>
         </FloatLabel>
@@ -29,6 +30,7 @@
             v-model="password"
             :="passwordProps"
             :invalid="errors.username?.length ? true : false"
+            :disabled="isSuccess"
           />
           <label for="password">Password</label>
         </FloatLabel>
@@ -36,13 +38,20 @@
           errors.password
         }}</Message>
       </div>
-      <Button type="submit" label="Sign In" fluid size="small" :loading="isPending" />
+      <Button
+        type="submit"
+        label="Sign In"
+        fluid
+        size="small"
+        :loading="isPending"
+        :disabled="isSuccess"
+      />
     </div>
   </form>
 </template>
 
 <script setup lang="ts">
-import { FloatLabel, InputText, Button, Message } from 'primevue'
+import { FloatLabel, InputText, Button, Message, useToast } from 'primevue'
 import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import { z } from 'zod'
@@ -52,13 +61,10 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const { isError, isPending, mutate } = useMutation({
+const { isError, isPending, mutate, isSuccess } = useMutation({
   mutationKey: ['auth'],
   mutationFn: async (data: z.infer<typeof loginSchema>) => {
     return await api.post('/auth/login', data, { withCredentials: true })
-  },
-  onSuccess() {
-    router.push('/home')
   },
 })
 
@@ -79,9 +85,24 @@ const { errors, defineField, handleSubmit, resetForm } = useForm({
 const [username, usernameProps] = defineField('username')
 const [password, passwordProps] = defineField('password')
 
+const toast = useToast()
+
 const onSubmit = handleSubmit((values) => {
-  mutate(values)
-  resetForm()
+  mutate(values, {
+    onSuccess() {
+      toast.add({
+        severity: 'success',
+        closable: false,
+        summary: 'Success!',
+        detail: 'Contact the ICTU to active your account.',
+        life: 3000,
+      })
+      resetForm()
+      setTimeout(() => {
+        router.push('/home')
+      }, 3000)
+    },
+  })
 })
 </script>
 

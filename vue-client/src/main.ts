@@ -5,11 +5,13 @@ import { VueQueryPlugin } from '@tanstack/vue-query'
 import './style.css'
 import PrimeVue from 'primevue/config'
 import { ThemePresets } from './theme-presets'
+import ToastService from 'primevue/toastservice'
 
 const app = createApp(App)
 
 app.use(router)
 app.use(VueQueryPlugin)
+app.use(ToastService)
 app.use(PrimeVue, {
   theme: {
     preset: ThemePresets,
