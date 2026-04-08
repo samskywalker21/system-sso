@@ -1,3 +1,4 @@
+import DashboardLayout from '@/layouts/DashboardLayout.vue'
 import api from '@/lib/api'
 import HomePage from '@/pages/HomePage.vue'
 import LoginPage from '@/pages/LoginPage.vue'
@@ -8,7 +9,11 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     { path: '/', name: 'login', component: LoginPage },
-    { path: '/home', name: 'home', component: HomePage },
+    {
+      path: '/home',
+      component: DashboardLayout,
+      children: [{ path: '', component: HomePage, name: 'home' }],
+    },
     { path: '/register', name: 'register', component: RegisterPage },
   ],
 })

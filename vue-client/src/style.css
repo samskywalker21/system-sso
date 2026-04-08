@@ -1,7 +1,8 @@
 @import 'tailwindcss';
 @import 'tailwindcss-primeui';
-@custom-variant dark (&:where(.dark, .dark *));
 @import '@fontsource-variable/inter/wght.css';
+@import 'primeicons/primeicons.css';
+@custom-variant dark (&: where(.dark, .dark *));
 
 body {
   font-family: 'Inter Variable', sans-serif;

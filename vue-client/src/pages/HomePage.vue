@@ -1,23 +1,7 @@
 <template>
-  <Button label="TEST" @click="clickHandler" />
+  <div>Home Page</div>
 </template>
 
-<script setup lang="ts">
-import { Button } from 'primevue'
-import { useQuery } from '@tanstack/vue-query'
-import api from '@/lib/api'
-
-const { refetch } = useQuery({
-  queryKey: ['test'],
-  queryFn: async () => {
-    return await api.post('/auth/logout', '', { withCredentials: true })
-  },
-  enabled: false,
-})
-
-const clickHandler = () => {
-  refetch()
-}
-</script>
+<script setup lang="ts"></script>
 
 <style scoped></style>
