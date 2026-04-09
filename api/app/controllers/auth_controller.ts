@@ -30,7 +30,7 @@ export default class AuthController {
       sameSite: 'lax',
     })
 
-    return accessToken.value?.release()
+    return context.response.ok('Success!')
   }
 
   async verify(context: HttpContext) {
