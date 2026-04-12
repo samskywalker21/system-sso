@@ -1,0 +1,27 @@
+{
+  "name": "vue-client",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@fontsource-variable/roboto": "^5.2.10",
+    "@nuxt/ui": "^4.6.1",
+    "nuxt": "^4.4.2",
+    "tailwindcss": "^4.2.2",
+    "vue": "^3.5.32",
+    "vue-router": "^5.0.4",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@iconify-json/lucide": "^1.2.102",
+    "@iconify-json/material-symbols": "^1.2.66",
+    "@iconify-json/svg-spinners": "^1.2.4",
+    "prettier": "3.8.2"
+  }
+}
