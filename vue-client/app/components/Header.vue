@@ -2,7 +2,7 @@
   <UHeader toggle-side="left" :ui="{ container: 'px-4!' }" title="Single Sign-On Service">
     <template #toggle>
       <UButton
-        icon="i-lucide-panel-left"
+        icon="i-lucide-square-menu"
         color="neutral"
         variant="ghost"
         aria-label="Toggle sidebar"
