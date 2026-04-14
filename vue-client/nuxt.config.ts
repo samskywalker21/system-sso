@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   runtimeConfig: {
     public: {
-      apiURL: ''
+      apiURL: 'http://localhost:3333'
     }
   },
   vite: {
@@ -13,6 +13,6 @@ export default defineNuxtConfig({
   ssr: false,
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['@nuxt/ui'],
+  modules: ['@nuxt/ui', '@vueuse/nuxt'],
   css: ['~/assets/css/main.css']
 })

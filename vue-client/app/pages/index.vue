@@ -1,15 +1,13 @@
 <template>
-  <UCard class="h-full shadow-2xl">
-    <div class="flex flex-col gap-5">
-      <div class="text-center text-5xl font-semibold tracking-tight">
-        Welcome back, {{ data?.fname }}
-      </div>
-      <div class="flex sm:flex-row flex-col gap-5">
-        <ProfileEditProfile />
-        <UCard class="flex-1">Credentials</UCard>
-      </div>
+  <div class="flex flex-col gap-5">
+    <div class="text-center text-5xl font-semibold tracking-tight">
+      Welcome back, {{ data?.fname }}
     </div>
-  </UCard>
+    <div class="flex lg:flex-row flex-col gap-5">
+      <ProfileEditProfile />
+      <ProfileChangePassword />
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">

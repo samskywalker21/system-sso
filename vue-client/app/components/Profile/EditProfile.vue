@@ -1,5 +1,5 @@
 <template>
-  <UCard class="flex-1">
+  <UCard class="flex-1 shadow-md">
     <template #header>
       <span class="font-semibold text-xl"> Edit your Profile </span>
     </template>
@@ -11,8 +11,8 @@
         loading-auto
         :disabled="edit ? false : true"
       >
-        <div class="flex flex-col gap-5 border border-white">
-          <div class="flex sm:flex-row flex-col justify-between gap-4">
+        <div class="flex flex-col gap-5">
+          <div class="flex lg:flex-row flex-col justify-between gap-4">
             <UFormField label="First Name" name="fname" class="flex-1">
               <UInput class="w-full" v-model="state.fname" />
             </UFormField>
@@ -144,7 +144,7 @@ const submitHandler = async (payload: FormSubmitEvent<Schema>) => {
       description: 'Profile has been updated.',
       color: 'success',
       close: false,
-      icon: 'i-lucide-user-round-check'
+      icon: 'i-material-symbols-person-check-rounded'
     })
   } catch (e) {
     toast.add({
@@ -152,7 +152,7 @@ const submitHandler = async (payload: FormSubmitEvent<Schema>) => {
       description: 'Something went wrong.',
       color: 'error',
       close: false,
-      icon: 'i-material-symbols-fingerprint-off-rounded'
+      icon: 'i-material-symbols-error-circle-rounded'
     })
   }
   await refreshNuxtData('profile')

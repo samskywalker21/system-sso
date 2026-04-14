@@ -30,26 +30,26 @@ const items: NavigationMenuItem[] = [
   },
   {
     label: 'Administrator',
-    icon: 'i-lucide-folders',
+    icon: 'i-material-symbols-folder-copy-rounded',
     children: [
       {
         label: 'Divisions',
-        icon: 'i-lucide-folder-closed',
+        icon: 'i-material-symbols-folder-copy-rounded',
         to: '/divisions'
       },
       {
         label: 'Sections',
-        icon: 'i-lucide-folder-closed',
+        icon: 'i-material-symbols-folder-copy-rounded',
         to: '/sections'
       },
       {
         label: 'Profiles',
-        icon: 'i-lucide-folder-closed',
+        icon: 'i-material-symbols-folder-copy-rounded',
         to: '/profiles'
       },
       {
         label: 'Systems',
-        icon: 'i-lucide-folder-closed',
+        icon: 'i-material-symbols-folder-copy-rounded',
         to: '/systems'
       }
     ]

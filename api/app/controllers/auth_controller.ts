@@ -28,6 +28,7 @@ export default class AuthController {
       httpOnly: true,
       path: '/',
       sameSite: 'lax',
+      maxAge: '8h',
     })
 
     return context.response.ok('Success!')

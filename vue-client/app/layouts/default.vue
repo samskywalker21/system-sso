@@ -4,7 +4,9 @@
     <div class="flex flex-1 min-h-0">
       <Sidebar v-model:open="open" />
       <UMain class="p-5 flex-1">
-        <slot />
+        <UCard class="h-full shadow-md">
+          <slot />
+        </UCard>
       </UMain>
     </div>
   </div>

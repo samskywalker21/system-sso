@@ -8,13 +8,13 @@ const config = {
   printWidth: 100,
   semi: false,
   singleQuote: true,
-  trailingComma: "none",
-  arrowParens: "always",
+  trailingComma: 'none',
+  arrowParens: 'always',
   bracketSpacing: true,
   useTabs: false,
   tabWidth: 2,
   jsxSingleQuote: true,
-  quoteProps: "consistent",
-};
+  quoteProps: 'consistent'
+}
 
-export default config;
+export default config
